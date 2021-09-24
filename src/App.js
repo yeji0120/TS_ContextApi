@@ -1,12 +1,13 @@
 import TodoForm from 'Components/TodoForm';
 import TodoList from 'Components/TodoList';
+import { TodosContextProvider } from 'contexts/TodosContext';
 
 function App() {
   return (
-    <div className="App">
+    <TodosContextProvider>
       <TodoForm />
       <TodoList />
-    </div>
+    </TodosContextProvider>
   );
 }
 
