@@ -1,7 +1,9 @@
+import TodoForm from 'Components/TodoForm';
+
 function App() {
   return (
     <div className="App">
-      <h1>TS CONTEXT API</h1>
+      <TodoForm />
     </div>
   );
 }
