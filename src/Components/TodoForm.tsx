@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
+import { useTodosDispatch } from 'contexts/TodosContext';
+
 const TodoForm = () => {
+  const dispatch = useTodosDispatch();
   const [value, setValue] = useState<string>('');
 
   const onSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
+    dispatch({
+      type: 'CREATE',
+      text: value,
+    });
     setValue('');
   };
 
