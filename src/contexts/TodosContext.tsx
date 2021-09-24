@@ -55,11 +55,14 @@ const TodosReducer = (state: TodosState, action: Action) => {
 
 // Provider
 // App에서 불러와 기존 내용을 감싸줘야하기 때문에 내보냄
+// context의 value를 변경하는 역할
+// value는 필수 값, 전달받는 Component의 수는 제한없음
 export const TodosContextProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
+  // const [상태, dispatch함수] = useReducer(reducer함수, 초기상태);
   const [todos, dispatch] = useReducer(TodosReducer, [
     {
       id: 1,

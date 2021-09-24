@@ -1,23 +1,39 @@
 import styled from 'styled-components';
 
+import { useTodosDispatch, Todo } from 'contexts/TodosContext';
+
 export type TodoItemProps = {
-  todo: {
-    id: number;
-    text: string;
-    done: boolean;
-  };
+  todo: Todo;
 };
 
 const TodoItem = ({ todo }: TodoItemProps) => {
+  const dispatch = useTodosDispatch();
+
+  const onToggle = (): void => {
+    dispatch({
+      type: 'TOGGLE',
+      id: todo.id,
+    });
+  };
+
+  const onDelete = (): void => {
+    dispatch({
+      type: 'DELETE',
+      id: todo.id,
+    });
+  };
+
   return (
     <ItemWrapper>
-      <ItemDone>DONE</ItemDone>
+      <ItemDone onClick={onToggle}>
+        {todo.done ? 'DONE' : 'In progress'}
+      </ItemDone>
 
       <ItemText textDecoration={todo.done ? 'line-through' : ''}>
         {todo.text}
       </ItemText>
 
-      <ItemDelete>DELETE</ItemDelete>
+      <ItemDelete onClick={onDelete}>DELETE</ItemDelete>
     </ItemWrapper>
   );
 };
@@ -28,7 +44,7 @@ const ItemWrapper = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 50px 0px 0px 0px;
+  margin: 50px 0px;
   border-radius: 10px;
   padding: 20px;
   color: ${({ theme }) => theme.colors.white};
