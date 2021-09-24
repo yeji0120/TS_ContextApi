@@ -13,7 +13,9 @@ const TodoItem = ({ todo }: TodoItemProps) => {
     <ItemWrapper>
       <ItemDone>DONE</ItemDone>
 
-      <ItemText>{todo.text}</ItemText>
+      <ItemText textDecoration={todo.done ? 'line-through' : ''}>
+        {todo.text}
+      </ItemText>
 
       <ItemDelete>DELETE</ItemDelete>
     </ItemWrapper>
@@ -42,9 +44,10 @@ const ItemDone = styled.div`
   }
 `;
 
-const ItemText = styled.div`
+const ItemText = styled.div<{ textDecoration: string }>`
   width: 75%;
   font-size: 20px;
+  text-decoration: ${(props) => props.textDecoration};
   cursor: not-allowed;
 `;
 
